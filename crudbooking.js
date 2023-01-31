@@ -11,7 +11,6 @@ const msg=document.querySelector('.msg');
 const userlist=document.querySelector('#users');
 const btun=document.querySelector('.btn btn-primary');
 
-myform.addEventListener('reload')
 //add event listener to form 
 myform.addEventListener('submit',onsubmit);
 function onsubmit(e){
@@ -39,22 +38,39 @@ function onsubmit(e){
         timeinput:timeinput.value,
         dateinput:dateinput.value
     };
-    axios.post('https://crudcrud.com/api/ab4aed8643984629becc6ab69eb11f30/appointmentData',myobj)
+    axios.post('https://crudcrud.com/api/35840d284fe64b3b8b9b7de8533f6ffe/appointmentData',myobj)
     .then((response)=>{
-        showingoutput(response)
+        console.log(response)
+        showingoutput(response.data)
     })
     .catch((err)=>{
       document.body.innerHTML=document.body.innerHTML+"<li>Something Went wrong</li>";
 
     })
+    }
+}
+    window.addEventListener('DOMContentLoaded',()=>{
+    axios.get('https://crudcrud.com/api/35840d284fe64b3b8b9b7de8533f6ffe/appointmentData')
+    .then((response)=>{
+        console.log(response)
+        for(let i=0;i<response.data.length;i++)
+        {
+            showingoutput(response.data[i]);
+        }
+    })
+    .catch((err)=>{
+        console.log(err)
+    
+      })
+    })
+   
 
    /*  const myobj_serialised=JSON.stringify(myobj);
     localStorage.setItem(emailinput.value,myobj_serialised); */
      function showingoutput(res)
      {
-
     const li=document.createElement('li');
-    const userinfo=document.createTextNode(`${nameinput.value}:${emailinput.value}:${numberinput.value}:${dateinput.value}:${timeinput.value}`);
+    const userinfo=document.createTextNode(`${res.nameinput}:${res.emailinput}:${res.numberinput}:${res.dateinput}:${res.timeinput}`);
     const delbtn=document.createElement('button');
     const delbtnname=document.createTextNode('x');
     const editbtn=document.createElement('button');
@@ -100,8 +116,10 @@ function onsubmit(e){
     dateinput.value='';
     timeinput.value='';
      }
-    }
-}
+
+
+
+
 
 
     const valid=document.querySelector('#my-form');
