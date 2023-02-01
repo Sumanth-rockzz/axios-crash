@@ -66,7 +66,7 @@ function onsubmit(e){
    
 
    /*  const myobj_serialised=JSON.stringify(myobj);
-    localStorage.setItem(emailinput.value,myobj_serialised); */
+    localStorage.setItem(emailinput.value,myobj_serialised);*/
      function showingoutput(res)
      {
     const li=document.createElement('li');
