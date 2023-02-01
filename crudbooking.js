@@ -38,7 +38,7 @@ function onsubmit(e){
         timeinput:timeinput.value,
         dateinput:dateinput.value
     };
-    axios.post('https://crudcrud.com/api/35840d284fe64b3b8b9b7de8533f6ffe/appointmentData',myobj)
+    axios.post('https://crudcrud.com/api/c1df67f7241a4ef9999121247b825754/appointmentData',myobj)
     .then((response)=>{
         console.log(response)
         showingoutput(response.data)
@@ -50,7 +50,7 @@ function onsubmit(e){
     }
 }
     window.addEventListener('DOMContentLoaded',()=>{
-    axios.get('https://crudcrud.com/api/35840d284fe64b3b8b9b7de8533f6ffe/appointmentData')
+    axios.get('https://crudcrud.com/api/c1df67f7241a4ef9999121247b825754/appointmentData')
     .then((response)=>{
         console.log(response)
         for(let i=0;i<response.data.length;i++)
@@ -83,21 +83,34 @@ function onsubmit(e){
             if(confirm('Are you sure?'))
             {
             userlist.removeChild(li);
-            localStorage.removeItem(myobj.emailinput);
-    
+            axios.delete(`https://crudcrud.com/api/c1df67f7241a4ef9999121247b825754/appointmentData/${res._id}`)
+            .then((res)=>{
+                console.log("this is ",res);
+            })
+            .catch((err)=>{
+                console.log(err)
+            
+              })
             }
         }
     editbtn.onclick=()=>{
 
            
-        document.getElementById('name').value=myobj.nameinput;
-        document.getElementById('email').value=myobj.emailinput;
-        document.getElementById('number').value=myobj.numberinput;
-        document.getElementById('date').value=myobj.dateinput;
-        document.getElementById('time').value=myobj.timeinput;
+        document.getElementById('name').value=res.nameinput;
+        document.getElementById('email').value=res.emailinput;
+        document.getElementById('number').value=res.numberinput;
+        document.getElementById('date').value=res.dateinput;
+        document.getElementById('time').value=res.timeinput;
 
         userlist.removeChild(li);
-            localStorage.removeItem(myobj.emailinput);
+        axios.delete(`https://crudcrud.com/api/c1df67f7241a4ef9999121247b825754/appointmentData/${res._id}`)
+        .then((res)=>{
+            console.log("this is ",res);
+        })
+        .catch((err)=>{
+            console.log(err)
+        
+          })
 
         
     }
