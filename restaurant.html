@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+</head>
+<body>
+    <div class="d-flex flex-column justify-content-center align-items-center">
+    <h1>Sharpener's Restuarant</h1><br>
+    <h6>~ The people who give you their food give you their heart..... <h2>💞</h2></h6>
+    </div>
+    <hr class="border-3">
+    <div class="d-flex  justify-content-center align-items-center">
+        <form id="myform" class="border border-dark rounded-5 border-4 p-5 pb-3 m-1 form-group" >
+            <h3>Place your order</h3>
+            <div id="msg" class="text-danger"></div>
+            <hr>
+            <label class="form-label">Price</label><br>
+            <div class="input-group">
+            <input id="price" class="form-control form-control-sm border-dark border-2" type="number" required>
+            <button class="btn btn-success">₹</button>
+            </div>
+            <label class="form-label">Item</label><br>
+            <input id="name" class="form-control  form-control-sm border-dark border-2"  type="text" required><br>
+            <label class="form-label">Select Table</label><br>
+            <select id="table" class="form-control form-control-sm border-dark border-2">
+            <option>Table1</option>
+            <option>Table2</option>
+            <option>Table3</option>
+            </select><br><br>
+            <div class="d-flex justify-content-center align-items-center">
+                <button id="add" class="btn btn-warning">Add</button>
+            </div>
+        </form>
+    <div class="d-flex" > 
+    <div class="ms-1">
+        <h5>List of Current orders in Table No 1</h5>
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <th>ItemName</th>
+                <th>ItemPrice</th>
+                <th>Table</th>
+                <th>Delete</th>
+            </thead>
+            <tbody id="table1">
+            </tbody>
+        </table> 
+     </div>
+     <div class="ms-1">
+        <h5>List of Current orders in Table No 2</h5>
+        <table class="table table-striped table-hover">
+        <thead class="table-dark">
+            <th>ItemName</th>
+            <th>ItemPrice</th>
+            <th>Table</th>
+            <th>Delete</th>
+        </thead>
+        <tbody id="table2">
+        </tbody>
+    </table>
+     </div>
+     <div class="ms-1">
+        <h5>List of Current orders in Table No 3</h5>
+        <table class="table table-striped table-hover">
+        <thead class="table-dark">
+            <th>ItemName</th>
+            <th>ItemPrice</th>
+            <th>Table</th>
+            <th>Delete</th>
+        </thead>
+        <tbody id="table3">
+        </tbody>
+    </table>
+     </div> 
+    </div>
+</div>
+    <script src="restuarant.js"></script>
+</body>
+</html>
