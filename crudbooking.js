@@ -38,7 +38,7 @@ function onsubmit(e){
         timeinput:timeinput.value,
         dateinput:dateinput.value
     };
-    axios.post('https://crudcrud.com/api/c1df67f7241a4ef9999121247b825754/appointmentData',myobj)
+    axios.post('https://crudcrud.com/api/fe77f72ab4264d08b1a326948e7cf218/appointmentData',myobj)
     .then((response)=>{
         console.log(response)
         showingoutput(response.data)
@@ -50,7 +50,7 @@ function onsubmit(e){
     }
 }
     window.addEventListener('DOMContentLoaded',()=>{
-    axios.get('https://crudcrud.com/api/c1df67f7241a4ef9999121247b825754/appointmentData')
+    axios.get('https://crudcrud.com/api/fe77f72ab4264d08b1a326948e7cf218/appointmentData')
     .then((response)=>{
         console.log(response)
         for(let i=0;i<response.data.length;i++)
@@ -83,7 +83,7 @@ function onsubmit(e){
             if(confirm('Are you sure?'))
             {
             userlist.removeChild(li);
-            axios.delete(`https://crudcrud.com/api/c1df67f7241a4ef9999121247b825754/appointmentData/${res._id}`)
+            axios.delete(`https://crudcrud.com/api/fe77f72ab4264d08b1a326948e7cf218/appointmentData/${res._id}`)
             .then((res)=>{
                 console.log("this is ",res);
             })
@@ -103,7 +103,7 @@ function onsubmit(e){
         document.getElementById('time').value=res.timeinput;
 
         userlist.removeChild(li);
-        axios.delete(`https://crudcrud.com/api/c1df67f7241a4ef9999121247b825754/appointmentData/${res._id}`)
+        axios.delete(`https://crudcrud.com/api/fe77f72ab4264d08b1a326948e7cf218/appointmentData/${res._id}`)
         .then((res)=>{
             console.log("this is ",res);
         })

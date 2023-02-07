@@ -10,7 +10,8 @@ const table3list=document.getElementById('table3');
 
 addbtn.addEventListener('click',addorder)
 
-function addorder(e){
+async function addorder(e){
+    try{
     e.preventDefault();
     if(price.value==''||itemname.value=='')
     {
@@ -27,15 +28,17 @@ function addorder(e){
         name:itemname.value,
         table:table.value
     }
-    axios.post(`https://crudcrud.com/api/344a867818ec44e388d75109569dc518/orderlist`,orderdeatils)
-    .then((response)=>{
+    response=await axios.post(`https://crudcrud.com/api/0f3df511812847d8ac892c369ee3420f/orderlist`,orderdeatils)
         Showoutput(response.data)
-    })
-    .catch((err)=>console.log(err))
-    }
     document.getElementById('myform').reset();
+    }
+} 
+catch(err){
+    console.log("Error at add Function:",err);
+} 
 }
 function Showoutput(res){
+    try{
     const row=document.createElement('tr');
     const itemnamedata=document.createElement('td');
     itemnamedata.innerHTML=`${res.name}`
@@ -52,9 +55,9 @@ function Showoutput(res){
     row.appendChild(pricedata);
     row.appendChild(tabledata);
     row.appendChild(delbtndata);
-    delbtn.addEventListener('click',()=>{
+    delbtn.addEventListener('click',async ()=>{
         let storetable=res.table;
-        axios.delete(`https://crudcrud.com/api/344a867818ec44e388d75109569dc518/orderlist/${res._id}`)
+       const response=await axios.delete(`https://crudcrud.com/api/0f3df511812847d8ac892c369ee3420f/orderlist/${res._id}`)
         .then((response)=>{
            console.log(response)
         })
@@ -84,14 +87,21 @@ function Showoutput(res){
         table3list.appendChild(row);
     }
 }
-window.addEventListener('DOMContentLoaded',()=>{
-    axios.get(`https://crudcrud.com/api/344a867818ec44e388d75109569dc518/orderlist`)
-        .then((response)=>{
+catch(err){
+    console.log("Error at show Function:",err);
+}
+}
+window.addEventListener('DOMContentLoaded',async ()=>{
+    try{
+    const response= await axios.get(`https://crudcrud.com/api/0f3df511812847d8ac892c369ee3420f/orderlist`)
+      
            for(let i=0;i<response.data.length;i++)
            {
             Showoutput(response.data[i])
            }
-        })
-        .catch((err)=>console.log(err))
+        }
+        catch(err){
+            console.log("Error at refresh Function:",err);
+        } 
 
 }) 
