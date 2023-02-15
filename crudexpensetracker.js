@@ -73,7 +73,6 @@ window.addEventListener('DOMContentLoaded',async ()=>{
         total-=parseInt(amount);
         totalexpense.innerHTML=total;
         Expenselist.removeChild(tr);
-       
     }
     catch(err){
         console.log("Error at Delete Function:",err);
