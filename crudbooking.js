@@ -38,10 +38,9 @@ function onsubmit(e){
         timeinput:timeinput.value,
         dateinput:dateinput.value
     };
-    axios.post('https://crudcrud.com/api/fe77f72ab4264d08b1a326948e7cf218/appointmentData',myobj)
+    axios.post('http://localhost:3000/user/add-user',myobj)
     .then((response)=>{
-        console.log(response)
-        showingoutput(response.data)
+        showingoutput(response.data.newuserdetails)
     })
     .catch((err)=>{
       document.body.innerHTML=document.body.innerHTML+"<li>Something Went wrong</li>";
@@ -50,12 +49,12 @@ function onsubmit(e){
     }
 }
     window.addEventListener('DOMContentLoaded',()=>{
-    axios.get('https://crudcrud.com/api/fe77f72ab4264d08b1a326948e7cf218/appointmentData')
+    axios.get('http://localhost:3000/user/get-users')
     .then((response)=>{
-        console.log(response)
-        for(let i=0;i<response.data.length;i++)
+
+        for(let i=0;i<response.data.Allusers.length;i++)
         {
-            showingoutput(response.data[i]);
+            showingoutput(response.data.Allusers[i]);
         }
     })
     .catch((err)=>{
@@ -70,7 +69,7 @@ function onsubmit(e){
      function showingoutput(res)
      {
     const li=document.createElement('li');
-    const userinfo=document.createTextNode(`${res.nameinput}:${res.emailinput}:${res.numberinput}:${res.dateinput}:${res.timeinput}`);
+    const userinfo=document.createTextNode(`${res.name}:${res.email}:${res.number}:${res.date}:${res.time}`);
     const delbtn=document.createElement('button');
     const delbtnname=document.createTextNode('x');
     const editbtn=document.createElement('button');
@@ -83,7 +82,7 @@ function onsubmit(e){
             if(confirm('Are you sure?'))
             {
             userlist.removeChild(li);
-            axios.delete(`https://crudcrud.com/api/fe77f72ab4264d08b1a326948e7cf218/appointmentData/${res._id}`)
+            axios.delete(`http://localhost:3000/user/delete-user/${res.id}`)
             .then((res)=>{
                 console.log("this is ",res);
             })
@@ -103,7 +102,7 @@ function onsubmit(e){
         document.getElementById('time').value=res.timeinput;
 
         userlist.removeChild(li);
-        axios.delete(`https://crudcrud.com/api/fe77f72ab4264d08b1a326948e7cf218/appointmentData/${res._id}`)
+        axios.delete(`http://localhost:3000/user/edit-user/${res.id}`)
         .then((res)=>{
             console.log("this is ",res);
         })
@@ -111,8 +110,6 @@ function onsubmit(e){
             console.log(err)
         
           })
-
-        
     }
 
     
